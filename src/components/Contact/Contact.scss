@@ -1,0 +1,42 @@
+.contact {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ffffff;
+
+    div {
+        padding: 15px;
+        font-size: 20px;
+        width: 25%;
+        text-align: center;
+        border-right: 1px dashed #ffffff;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    & div:last-child {
+        border-right: none;
+    }
+}
+
+.actions {
+    display: flex;
+    justify-content: space-evenly;
+
+    button {
+        background-color: rgba(181, 131, 173, 0.5);
+        box-shadow: 0 2px 8px rgba(0,0,0,.6);
+        border-radius: 16px;
+        color: #ffffff;
+        font-size: 16px;
+        padding: 7px 20px;
+        border: none;
+        cursor: pointer;
+        transition-duration: 0.5s;
+    
+        &:hover {
+            box-shadow: 0 2px 18px #804f78;
+        }
+    }
+}

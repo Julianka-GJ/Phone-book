@@ -1,0 +1,73 @@
+.AddForm {
+    width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 80px;
+
+    input {
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid #ffffff;
+        color: #ffffff;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 20px;
+        opacity: 60%;
+    }
+}
+
+.back-contact {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 30px;
+
+    button {
+        padding: 7px 25px;
+        border: none;
+        border-radius: 16px;
+        background-color: rgba(181, 131, 173, 0.5);
+        box-shadow: 0 2px 10px rgba(0,0,0,.6);
+        transition-duration: 0.5s;
+
+        &:hover {
+            box-shadow: 0 5px 20px #804f78;
+        }
+    }
+
+    .link {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+    }
+}
+
+.save {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+
+    button {
+        background-color: rgba(181, 131, 173, 0.5);
+        box-shadow: 0 2px 8px rgba(0,0,0,.6);
+        border-radius: 16px;
+        color: #ffffff;
+        font-size: 16px;
+        padding: 7px 25px;
+        border: none;
+        cursor: pointer;
+        transition-duration: 0.5s;
+    
+        &:hover {
+            box-shadow: 0 2px 18px #804f78;
+        }
+    }
+
+    & button:first-child {
+        margin-right: 20px;
+    }
+}
