@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 
 
-function ListContact({ data, handleDelete }) {
+function ListContact({ data, handleDelete, onEditContact }) {
 
     return (
         <div className="ListContact">
@@ -34,6 +34,7 @@ function ListContact({ data, handleDelete }) {
                         surName={e.username}
                         phone={e.phone}
                         handleDelete={handleDelete}
+                        onEditContact={onEditContact}
                     />)
                 )}
             </div>

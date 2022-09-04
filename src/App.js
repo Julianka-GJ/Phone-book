@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ListContact from "./pages/ListContact/ListContact";
 import AddContact from "./pages/AddContact/AddContact";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EditContact from './pages/EditContact/EditContact';
 
 function App() {
 
@@ -50,6 +51,28 @@ function App() {
     setItems(contact.push(newContact))
   };
 
+  const onEditContact = (e) => {
+    let searchContact = contact.find(el => el.id == e);
+
+    setItems({
+      id: searchContact.id,
+      name: searchContact.name,
+      username: searchContact.username,
+      phone: searchContact.phone
+    })
+  };
+
+  const saveEdit = (idElem, userName, surName, phone) => {
+    let searchContact = contact.find(el => el.id == idElem);
+
+    searchContact.name = userName;
+    searchContact.username = surName;
+    searchContact.phone = phone;
+    console.log(searchContact);
+
+    setItems(searchContact)
+  }
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -62,8 +85,9 @@ function App() {
         <div className="App">
           <h1>Phone book</h1>
           <Routes>
-            <Route path="/" element={<ListContact handleDelete={handleDelete} data={contact} />} />
-            <Route path="AddContact" element={<AddContact onAdd={onAdd}/>} />
+            <Route path="/" element={<ListContact handleDelete={handleDelete} data={contact} onEditContact={onEditContact} />} />
+            <Route path="AddContact" element={<AddContact onAdd={onAdd} />} />
+            <Route path="EditContact" element={<EditContact setItems={setItems} items={items} saveEdit={saveEdit} />} />
           </Routes>
         </div>
       </BrowserRouter>

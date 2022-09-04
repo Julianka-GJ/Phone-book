@@ -1,15 +1,19 @@
-import "./AddContact.scss";
+import "./EditContact.scss";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popup from "../../components/Popup/Popup";
 
-function AddContact(props) {
 
-    const [userName, setUserName] = useState("");
-    const [surName, setSurName] = useState("");
-    const [phone, setPhone] = useState("");
+function EditContact({ items, saveEdit }) {
 
-    const [visible, setVisible] = useState(true);
+    const [userName, setUserName] = useState(items.name);
+    const [surName, setSurName] = useState(items.username);
+    const [phone, setPhone] = useState(items.phone);
+
+    const handleFirstNameChange = event => setUserName(event.target.value);
+    const handleSurNameChange = event => setSurName(event.target.value);
+    const handlePhoneChange = event => setPhone(event.target.value);
+
     const [openPop, setOpenPop] = useState({
         add: false,
         required: false,
@@ -17,16 +21,10 @@ function AddContact(props) {
 
     const { add, required } = openPop;
 
-    const handleFirstNameChange = event => setUserName(event.target.value);
-    const handleSurNameChange = event => setSurName(event.target.value);
-    const handlePhoneChange = event => setPhone(event.target.value);
-
-    const saveContact = () => {
-        if (userName && surName && (phone.length > 5)) {
-            props.onAdd(userName, surName, phone);
-            setUserName("");
-            setSurName("");
-            setPhone("");
+    const saveEditContact = (event) => {
+        let itemId = event.target.id;
+        if (userName && surName && phone) {
+            saveEdit(itemId, userName, surName, phone);
             setOpenPop({ add: true });
         }
 
@@ -35,24 +33,18 @@ function AddContact(props) {
         }
     };
 
-    const clearInput = () => {
-        setUserName("");
-        setSurName("");
-        setPhone("");
-    };
-
     return (
         <div>
             <div className='block-contact'>
                 <button><Link className="link" to="/">Back to contact list</Link></button>
             </div>
-            {visible && <form className="AddForm">
-                <h1>Add new contact</h1>
+            <form className="AddForm">
+                <h1>Edit Contact</h1>
                 <p>Name</p>
                 <input
                     type="text"
                     name="firstName"
-                    value={userName || ""}
+                    value={userName}
                     onChange={handleFirstNameChange}
                     required />
                 <p>Username</p>
@@ -60,18 +52,17 @@ function AddContact(props) {
                     type="text"
                     name="surName"
                     onChange={handleSurNameChange}
-                    value={surName || ""}
+                    value={surName}
                     required />
                 <p>Phone</p>
                 <input
-                    type="number"
+                    type="text"
                     name="phone"
                     onChange={handlePhoneChange}
-                    value={phone || ""}
+                    value={phone}
                     required />
                 <div className="save">
-                    <button onClick={clearInput} type="button">Сancel</button>
-                    <button onClick={saveContact} type="button">Save</button>
+                    <button id={items.id} type="button" onClick={saveEditContact}>Save</button>
                 </div>
                 {add && <Popup
                     popUpText={"Adding completed successfully"}
@@ -79,9 +70,9 @@ function AddContact(props) {
                 {required && <Popup
                     popUpText={"All fields are required"}
                     setOpenPop={setOpenPop} />}
-            </form>}
+            </form>
         </div>
     )
 }
 
-export default AddContact;
+export default EditContact;
